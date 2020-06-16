@@ -43,7 +43,7 @@ const TasksBox = (props) => {
                    })}
                 </div>
                 <div className="inliner">
-                    <input type="text" className="form-control mr-auto ml-auto" id="tasker" value={taskvalue} onChange={changehandler} placeholder="New Task.."/>
+                    <input type="text" className="form-control mr-auto ml-auto" id="tasker" value={taskvalue} onChange={changehandler} placeholder="New Task..(max 50 chars)"/>
                 </div>
                 <div className="inliner">
                     <p onClick={addtasks} className="hooki">Add</p>
