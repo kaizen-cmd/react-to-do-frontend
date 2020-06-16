@@ -5,30 +5,43 @@ const Task = (props) => {
 
   var pd;
   var val;
+  var sty;
   if(props.isdone === true) {
     val = <del>{props.task}</del>;
     pd = "Redo";
+    sty = {
+      "textDecoration": "line-through"
+    }
   }
   else {
     val = props.task;
     pd = "Done";
+    sty = {
+      "textDecoration": "none"
+    }
   }
 
   const [done, setDone] = useState(pd);
   const [cut, setCut] = useState(val);
+
+  const [styler, setstyler] = useState(sty);
   
 
   function striker() {
     var isdone =  document.querySelector(`#button${props.id}`).innerText;
     if(isdone === 'Done') {
-      axios.put('https://djangoapitodo.herokuapp.com/tasks/api/', {'id': props.id, 'task': props.task, 'is_done': "True",}, {headers: {'content-type': 'application/json'}});
-        setCut(<del>{props.task}</del>);
+      axios.put('https://djangoapitodo.herokuapp.com/tasks/api/', {'id': props.id, 'task': props.task, 'is_done': "True",}, {headers: {'content-type': 'application/json'}})
         setDone("Redo");
+        setstyler({
+          "textDecoration": "line-through"
+        })
     }
     else {
       axios.put('https://djangoapitodo.herokuapp.com/tasks/api/', {'id': props.id, 'task': props.task, 'is_done': "False",}, {headers: {'content-type': 'application/json'}});
-        setCut(props.task);
-        setDone("Done"); 
+        setDone("Done");
+        setstyler({
+          "textDecoration": "none"
+        }) 
     }
   }
 
@@ -38,10 +51,15 @@ const Task = (props) => {
     id.remove();
   }
 
+  function updateNote(event) {
+    setCut(event.target.value);
+    axios.put('https://djangoapitodo.herokuapp.com/tasks/api/', {'id': props.id, 'task': event.target.value, 'is_done': props.isdone,}, {headers: {'content-type': 'application/json'}});
+  }
+
   return (
       <div className= {"p-2 text-center tbox" + props.id}>
         <div style={{"display": "inline-block", "wordWrap": "break-word"}} className="w-50">
-            <p className="d-inline">{cut}</p>
+            <input className="d-inline taskbox-task" value={cut} id={'taskbox' + props.id} onChange={updateNote} style={styler} />
         </div>
         <div style={{"display": "inline-block"}} className="w-50">
           <button onClick={striker} id={"button" + props.id} className="btn btn-primary btn-sm">{done}</button>

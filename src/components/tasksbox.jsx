@@ -33,6 +33,7 @@ const TasksBox = (props) => {
         <div>
             <div className="mt-5 pt-5 pb-5 text-center mr-auto ml-auto taskbox">
                 <h2>To do List</h2>
+                <p>Click on the task to edit</p>
                 <div className="mb-5 mt-5">
                     {props.tasksarray.map((task) => {
                        return <Task task={task.task} key={task.id} id={task.id} isdone={task.isdone} />

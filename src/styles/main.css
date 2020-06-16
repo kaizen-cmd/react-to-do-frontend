@@ -40,6 +40,12 @@ footer {
     color: grey;
 }
 
+.taskbox-task {
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
 @media screen and (max-width:900px) {
 
     .taskbox {
