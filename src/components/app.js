@@ -1,40 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 import TasksBox from "./tasksbox";
 import '../styles/main.css';
 import axios from 'axios';
 
 
-const App = () => {
+class App extends React.Component {
 
-    const [taskarray, settaskarray] = useState([]);
+    state = {
+        tasks: []
+    }
 
-    axios.get("https://djangoapitodo.herokuapp.com/tasks/api/").then((res) => {
-        settaskarray(() => {
-           res.data.map((task) => {
-               return {
-                'key': task['id'],
-                'id': task['id'],
-                'task': task['task'],
-                'isdone': task['is_done'],
-               }
-           })
+    componentDidMount() {
+        axios.get("http://djangoapitodo.herokuapp.com/tasks/api/")
+        .then(res => {
+            var t = [];
+            for(var obj in res.data) {
+                t.push({
+                    "key": res.data[obj]['id'],
+                    "id": res.data[obj]['id'],
+                    "task": res.data[obj]['task'],
+                    "isdone":res.data[obj]['is_done'],
+                })
+            }
+            this.setState({
+                tasks: t
+            });
         })
-    })
-    
-                        
-    return (
-        <div>
-            <TasksBox tasksarray={taskarray.map((task) => {
-                return {
-                    'key': task['id'],
-                    'id': task['id'],
-                    'task': task['task'],
-                    'isdone': task['is_done'],
-                }
-            })}/>
-            <footer className="text-center mt-5"><p>Copyright © Tejas Mandre 2020</p></footer>
-        </div>
-    )
+    }
+    render() {
+        return (
+            <div>
+                <TasksBox tasksarray={this.state.tasks}/>
+            </div>   
+        )
+    }
 }
 
 export default App;
