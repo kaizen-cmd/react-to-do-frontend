@@ -9,7 +9,6 @@ const App = () => {
     const [taskarray, settaskarray] = useState([]);
 
     axios.get("https://djangoapitodo.herokuapp.com/tasks/api/").then((res) => {
-        var t = [];
         settaskarray(() => {
            res.data.map((task) => {
                return {
