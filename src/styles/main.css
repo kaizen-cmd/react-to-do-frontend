@@ -1,0 +1,49 @@
+body {
+    background-color: #faeee7;
+}
+
+.taskbox {
+    background-color: #ffcd3c;
+    box-shadow: 3px 3px 5px grey;
+    border-radius: 15px;
+    width: 35%;
+}
+
+.taskbox h2 {
+    color: white;
+    text-shadow: 1px 1px 1px grey;
+}
+
+.hooki {
+    color: #ffcd3c;
+    margin: 8px;
+    padding: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: white;
+}
+
+.hooki:hover {
+    cursor: pointer;
+    color: black;
+}
+
+.inliner {
+    display: inline-block;
+}
+
+.taskp {
+    font-weight: 2rem;
+}
+
+footer {
+    color: grey;
+}
+
+@media screen and (max-width:900px) {
+
+    .taskbox {
+        width: 90%;
+    }
+
+}
