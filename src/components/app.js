@@ -11,7 +11,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("http://djangoapitodo.herokuapp.com/tasks/api/")
+        axios.get("https://djangoapitodo.herokuapp.com/tasks/api/")
         .then(res => {
             var t = [];
             for(var obj in res.data) {
