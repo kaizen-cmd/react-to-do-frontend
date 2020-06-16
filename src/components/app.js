@@ -24,6 +24,9 @@ const App = () => {
     return (
         <div>
             <TasksBox tasksarray={tasks} />
+            <footer className="text-center mt-5">
+                <p style={{"color": "grey"}}>© Tejas Mandre 2020</p>
+            </footer>
         </div>
     );
 };

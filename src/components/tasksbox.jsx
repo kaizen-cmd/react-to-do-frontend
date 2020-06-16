@@ -12,28 +12,33 @@ const TasksBox = (props) => {
         settaskvalue(event.target.value);
     }
 
-    function addtasks() {
-        var newtask = taskvalue;
-        if(newtask !== "") {
-            axios.post('https://djangoapitodo.herokuapp.com/tasks/api/', {'task': newtask,}, {headers: {'content-type': 'application/json'}}).then(res => {
-                setnewtasks((prev) => {
-                    return [...prev, {
-                        'key': res.data['id'],
-                        'id': res.data['id'],
-                        'task': res.data['task'],
-                        'isdone': res.data['is_done'],
-                    }]
+    function addtasks(event) {
+        if(event.key === "Enter" || event.button === 0) {
+            var newtask = document.getElementById('tasker').value;
+            if(newtask !== "") {
+                axios.post('https://djangoapitodo.herokuapp.com/tasks/api/', {'task': newtask,}, {headers: {'content-type': 'application/json'}}).then(res => {
+                    setnewtasks((prev) => {
+                        return [...prev, {
+                            'key': res.data['id'],
+                            'id': res.data['id'],
+                            'task': res.data['task'],
+                            'isdone': res.data['is_done'],
+                        }]
+                    });
                 });
-            });
+            }
+            settaskvalue("");
         }
-        settaskvalue("");
     }
+
+    document.addEventListener('keypress', addtasks);
 
     return (
         <div>
             <div className="mt-5 pt-5 pb-5 text-center mr-auto ml-auto taskbox">
                 <h2>To do List</h2>
-                <p>Click on the task to edit</p>
+                <h6>Click on the task to edit</h6>
+                <h6 id="hit-enter">Hit Enter to add task</h6>
                 <div className="mb-5 mt-5">
                     {props.tasksarray.map((task) => {
                        return <Task task={task.task} key={task.id} id={task.id} isdone={task.isdone} />

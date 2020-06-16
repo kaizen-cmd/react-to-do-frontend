@@ -21,6 +21,7 @@ body {
     font-size: 1rem;
     font-weight: bold;
     background-color: white;
+    box-shadow: 1px 2px 5px grey;
 }
 
 .hooki:hover {
@@ -53,8 +54,8 @@ footer {
     background-color: transparent;
     outline: none;
     border: none;
-    width: 100%;
-    padding-left: 40px;
+    width: 90%;
+    margin-left: 40px;
 }
 
 @media screen and (max-width:900px) {
@@ -73,6 +74,10 @@ footer {
 
     .widther {
         width: 45%;
+    }
+
+    #hit-enter {
+        display: none;
     }
 
 }
