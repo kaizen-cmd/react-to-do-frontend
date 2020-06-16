@@ -40,16 +40,39 @@ footer {
     color: grey;
 }
 
+.widther {
+    width: 35%;
+    padding: 0;
+}
+
+.widthr {
+    width: 65%;
+}
+
 .taskbox-task {
     background-color: transparent;
     outline: none;
     border: none;
+    width: 100%;
+    padding-left: 40px;
 }
 
 @media screen and (max-width:900px) {
 
+    .taskbox-task {
+        padding-left: 15px;
+    }
+
     .taskbox {
         width: 90%;
+    }
+
+    .widthr {
+        width: 55%;
+    }
+
+    .widther {
+        width: 45%;
     }
 
 }

@@ -57,11 +57,11 @@ const Task = (props) => {
   }
 
   return (
-      <div className= {"p-2 text-center tbox" + props.id}>
-        <div style={{"display": "inline-block", "wordWrap": "break-word"}} className="w-50">
+      <div className= {"text-center tbox" + props.id}>
+        <div style={{"display": "inline-block", "wordWrap": "break-word"}} className="widthr">
             <input className="d-inline taskbox-task" value={cut} id={'taskbox' + props.id} onChange={updateNote} style={styler} />
         </div>
-        <div style={{"display": "inline-block"}} className="w-50">
+        <div style={{"display": "inline-block"}} className="widther">
           <button onClick={striker} id={"button" + props.id} className="btn btn-primary btn-sm">{done}</button>
           <button onClick={deletetask} id={"buttond" + props.id} className="ml-3 btn btn-danger btn-sm">Delete</button>
         </div>
