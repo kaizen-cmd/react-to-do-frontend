@@ -61,7 +61,7 @@ footer {
 @media screen and (max-width:900px) {
 
     .taskbox-task {
-        padding-left: 15px;
+        margin-left: 15px;
     }
 
     .taskbox {
