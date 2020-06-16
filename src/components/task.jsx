@@ -7,7 +7,7 @@ const Task = (props) => {
   var val;
   var sty;
   if(props.isdone === true) {
-    val = <del>{props.task}</del>;
+    val = props.task;
     pd = "Redo";
     sty = {
       "textDecoration": "line-through"
