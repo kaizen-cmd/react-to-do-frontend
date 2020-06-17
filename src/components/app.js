@@ -1,32 +1,19 @@
 import React from "react";
-import TasksBox from "./tasksbox";
 import "../styles/main.css";
-import axios from "axios";
+import { BrowserRouter as Router } from "react-router-dom";
+import BaseRouter from "../routers";
+import Footer from "./footer";
+import MenuBar from "./navigation/menubar";
 
 const App = () => {
-    const [tasks, setTasks] = React.useState([]);
-    React.useEffect(() => {
-        axios
-            .get("https://djangoapitodo.herokuapp.com/tasks/api/")
-            .then((res) => {
-                var t = [];
-                for (var obj in res.data) {
-                    t.push({
-                        key: res.data[obj]["id"],
-                        id: res.data[obj]["id"],
-                        task: res.data[obj]["task"],
-                        isdone: res.data[obj]["is_done"],
-                    });
-                }
-                setTasks(t);
-            });
-    }, []);
+
     return (
         <div>
-            <TasksBox tasksarray={tasks} />
-            <footer className="text-center mt-5">
-                <p style={{"color": "grey"}}>© Tejas Mandre 2020</p>
-            </footer>
+            <Router>
+                <MenuBar />
+                <BaseRouter />
+                <Footer />
+            </Router>
         </div>
     );
 };

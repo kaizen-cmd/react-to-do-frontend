@@ -28,8 +28,10 @@ const Task = (props) => {
   
 
   function striker() {
-    var isdone =  document.querySelector(`#button${props.id}`).innerText;
-    if(isdone === 'Done') {
+    var isdone =  document.querySelector(`#button${props.id}`);
+    isdone.style.backgroundColor = "gainsboro";
+
+    if(isdone.innerText === 'Done') {
       axios.put('https://djangoapitodo.herokuapp.com/tasks/api/', {'id': props.id, 'task': props.task, 'is_done': "True",}, {headers: {'content-type': 'application/json'}})
         setDone("Redo");
         setstyler({
@@ -37,6 +39,7 @@ const Task = (props) => {
         })
     }
     else {
+      isdone.style.backgroundColor = "transparent";
       axios.put('https://djangoapitodo.herokuapp.com/tasks/api/', {'id': props.id, 'task': props.task, 'is_done': "False",}, {headers: {'content-type': 'application/json'}});
         setDone("Done");
         setstyler({
@@ -55,31 +58,20 @@ const Task = (props) => {
     setCut(event.target.value);
   }
 
-  function focushandler() {
-    var ele = document.getElementById('taskbox' + props.id);
-    ele.style.backgroundColor = "white";
-    ele.style.boxShadow = "1px 1px 3px grey"
-    ele.style.padding = "5px";
-  }
-
   function focusouthandler() {
     var ele = document.getElementById('taskbox' + props.id);
-    ele.style.backgroundColor = "#ffcd3c";
-    ele.style.boxShadow = "none"
-    ele.style.padding = "none";
     axios.put('https://djangoapitodo.herokuapp.com/tasks/api/', {'id': props.id, 'task': ele.value, 'is_done': props.isdone,}, {headers: {'content-type': 'application/json'}});
   }
 
   return (
-      <div className= {"text-center tbox" + props.id}>
-        <div style={{"display": "inline-block", "wordWrap": "break-word"}} className="widthr">
-            <input className="d-inline taskbox-task" value={cut} id={'taskbox' + props.id} onChange={updateNote} style={styler} onFocus={focushandler} onBlur={focusouthandler} />
+      <div className={"task-container tbox" + props.id}>
+        <div className="task-input-container">
+            <input className="task-input" value={cut} id={'taskbox' + props.id} onChange={updateNote} style={styler} onBlur={focusouthandler} />
         </div>
-        <div style={{"display": "inline-block"}} className="widther">
-          <button onClick={striker} id={"button" + props.id} className="btn btn-primary btn-sm">{done}</button>
-          <button onClick={deletetask} id={"buttond" + props.id} className="ml-3 btn btn-danger btn-sm">Delete</button>
+        <div className="task-buttons">
+            <div onClick={striker} id={"button" + props.id} className="task-button-checkbox">{done}</div>
+            <button onClick={deletetask} id={"buttond" + props.id} className="task-button"><span role="img" aria-label="delete-button">❌</span></button>
         </div>
-          <hr/>
       </div>
   );
 };

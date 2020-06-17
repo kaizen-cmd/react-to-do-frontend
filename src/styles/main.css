@@ -1,12 +1,14 @@
 body {
-    background-color: #faeee7;
+    background-color: rgb(10, 10, 10);
 }
 
 .taskbox {
-    background-color: #ffcd3c;
-    box-shadow: 3px 3px 5px grey;
+    background-image: url('https://images.unsplash.com/photo-1578581100370-a7dd362d1348?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
     border-radius: 15px;
     width: 35%;
+    /* box-shadow: 0 3000px rgba(0, 0, 0, 0.3) inset; */
 }
 
 .taskbox h2 {
@@ -17,11 +19,9 @@ body {
 .hooki {
     color: #ffcd3c;
     margin: 8px;
-    padding: 5px;
     font-size: 1rem;
     font-weight: bold;
-    background-color: white;
-    box-shadow: 1px 2px 5px grey;
+    background-color: transparent;
 }
 
 .hooki:hover {
@@ -41,43 +41,86 @@ footer {
     color: grey;
 }
 
-.widther {
-    width: 35%;
-    padding: 0;
+
+
+.navbar {
+    background-color: transparent;
 }
 
-.widthr {
-    width: 65%;
+.navbar a {
+    color: orangered;
 }
 
-.taskbox-task {
+
+.task-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 90%;
+    margin: 0 auto 5px auto;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.task-input-container {
+    display: inline;
+}
+
+.task-input {
     background-color: transparent;
     outline: none;
     border: none;
-    width: 90%;
-    margin-left: 40px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0;
+    width: 75%;
 }
 
-@media screen and (max-width:900px) {
+.task-buttons {
+    display: inline;
+}
 
-    .taskbox-task {
-        margin-left: 15px;
-    }
+.task-button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 1.1rem;
+}
+
+.task-button-checkbox {
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    border: 2px solid gainsboro;
+    margin-right: 15px;
+    border-radius: 50%;
+    color: transparent;
+}
+
+.task-button-checkbox:hover {
+    cursor: pointer;
+}
+
+
+@media screen and (max-width:900px) {
 
     .taskbox {
         width: 90%;
     }
 
-    .widthr {
-        width: 55%;
-    }
-
-    .widther {
-        width: 45%;
+    .task-input-container {
+        margin: 0;
     }
 
     #hit-enter {
         display: none;
+    }
+
+    .task-button-checkbox {
+        margin-right: 0px;
+    }
+
+    .task-input {
+        width: 70%;
     }
 
 }
